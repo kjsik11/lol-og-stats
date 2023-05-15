@@ -13,9 +13,11 @@
     "@headlessui/react": "1.7.4",
     "@heroicons/react": "2.0.13",
     "clsx": "1.2.1",
+    "got": "12.6.0",
     "next": "^12.3.4",
-    "next-seo": "5.15.0",
+    "next-seo": "6.0.0",
     "nextjs-progressbar": "0.0.14",
+    "playwright": "1.33.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.3"
