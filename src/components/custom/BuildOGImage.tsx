@@ -149,6 +149,7 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
                     style={{
                       marginRight: 8,
                       fontSize: 20,
+                      color: 'gray',
                     }}
                   >
                     K
@@ -158,6 +159,7 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
                     style={{
                       marginRight: 8,
                       fontSize: 20,
+                      color: 'gray',
                     }}
                   >
                     D
@@ -167,6 +169,7 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
                     style={{
                       marginRight: 8,
                       fontSize: 20,
+                      color: 'gray',
                     }}
                   >
                     A
