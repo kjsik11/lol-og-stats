@@ -26,8 +26,8 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
       >
         <img
           style={{
-            width: 171,
-            height: 194,
+            width: 210,
+            height: 240,
           }}
           alt={`lol ${summonerInfo.queueType} ${summonerInfo.tier} tier icon`}
           src={`${NEXT_PUBLIC_WEB_URL}/images/${summonerInfo.tier}.jpg`}
@@ -37,12 +37,12 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            paddingLeft: '8px',
+            paddingLeft: 40,
           }}
         >
           <p
             style={{
-              fontSize: '18px',
+              fontSize: 36,
               padding: 0,
               margin: 0,
             }}
@@ -51,7 +51,7 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
           </p>
           <p
             style={{
-              fontSize: '24px',
+              fontSize: 60,
               padding: 0,
               margin: 0,
             }}
@@ -60,7 +60,7 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
           </p>
           <p
             style={{
-              fontSize: '18px',
+              fontSize: 32,
               padding: 0,
               margin: 0,
             }}
@@ -89,78 +89,37 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                margin: 8,
+                margin: 4,
               }}
               key={idx}
             >
               <img
                 style={{
-                  width: 150,
-                  height: 150,
-                  borderRadius: 4,
+                  width: 230,
+                  height: 230,
+                  borderTopLeftRadius: 4,
+                  borderTopRightRadius: 4,
                 }}
                 alt={`${matchInfo.championName} image`}
                 src={`${NEXT_PUBLIC_RIOT_CHAMPION_IMAGE_URL}/${matchInfo.championName}.png`}
               />
+
               <div
                 style={{
                   display: 'flex',
+                  fontSize: '32px',
+                  textAlign: 'center',
+                  padding: '1px 2px',
+                  backgroundColor: matchInfo.win ? '#5383E8' : '#E84057',
+                  fontWeight: 'bold',
                   justifyContent: 'center',
-                  alignContent: 'center',
-                  marginTop: 4,
+                  color: 'white',
+                  borderBottomLeftRadius: 4,
+                  borderBottomRightRadius: 4,
                 }}
               >
-                <p
-                  style={{
-                    fontSize: '18px',
-                    padding: '1px 2px',
-                    margin: '0 2px 0 0',
-                    backgroundColor: matchInfo.win ? '#5383E8' : '#E84057',
-                    fontWeight: 'bold',
-                    color: 'white',
-                    borderRadius: 4,
-                  }}
-                >
-                  {matchInfo.win ? '승리' : '패배'}
-                </p>
-                <p
-                  style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    fontSize: '18px',
-                    padding: 0,
-                    margin: 0,
-                  }}
-                >
-                  {matchInfo.kills} / {matchInfo.deaths} / {matchInfo.assists}
-                </p>
+                {matchInfo.win ? '승리' : '패배'}
               </div>
-            </div>
-          ))}
-        </div>
-        <div
-          style={{
-            display: 'flex',
-          }}
-        >
-          {matchInfoList.slice(5).map((matchInfo, idx) => (
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                margin: 8,
-              }}
-              key={idx}
-            >
-              <img
-                style={{
-                  width: 150,
-                  height: 150,
-                  borderRadius: 4,
-                }}
-                alt={`${matchInfo.championName} image`}
-                src={`${NEXT_PUBLIC_RIOT_CHAMPION_IMAGE_URL}/${matchInfo.championName}.png`}
-              />
               <div
                 style={{
                   display: 'flex',
@@ -171,27 +130,20 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
               >
                 <p
                   style={{
-                    fontSize: '18px',
-                    padding: '1px 2px',
-                    margin: '0 2px 0 0',
-                    backgroundColor: matchInfo.win ? '#5383E8' : '#E84057',
-                    fontWeight: 'bold',
-                    color: 'white',
-                    borderRadius: 4,
-                  }}
-                >
-                  {matchInfo.win ? '승리' : '패배'}
-                </p>
-                <p
-                  style={{
-                    flex: 1,
                     justifyContent: 'center',
-                    fontSize: '18px',
+                    fontSize: '36px',
                     padding: 0,
                     margin: 0,
                   }}
                 >
-                  {matchInfo.kills} / {matchInfo.deaths} / {matchInfo.assists}
+                  <span
+                    style={{
+                      color: matchInfo.win ? '#1651d0' : '#E84057',
+                    }}
+                  >
+                    {matchInfo.kills}
+                  </span>
+                  &nbsp;/&nbsp;{matchInfo.deaths}&nbsp;/&nbsp;{matchInfo.assists}
                 </p>
               </div>
             </div>
