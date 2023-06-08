@@ -25,6 +25,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 type Params = { params: { nickname: string } };
 export default async function Page({ params: { nickname } }: Params) {
   const summonerIds = await getSummonerV4(nickname);
+
+  //@ts-ignore
+  if (summonerIds?.status?.message)
+    return (
+      <div className="bg-black h-screen flex items-center min-h-[600px]">
+        <div className="flex justify-center h-[600px] items-center w-[830px] m-auto bg-white rounded-md">
+          <p className="text-2xl font-semibold">존재하지 않는 소환사입니다.</p>
+        </div>
+      </div>
+    );
+
   const summonerInfo = await getSummonerInfo(summonerIds.id);
   const matchIds = await getMatchIds(summonerIds.puuid, 10);
   const matchInfoList = await Promise.all(
@@ -34,7 +45,7 @@ export default async function Page({ params: { nickname } }: Params) {
   return (
     <>
       <div className="bg-black h-screen flex items-center min-h-[600px]">
-        <div className="flex justify-center h-[600px] items-center max-w-[830px] m-auto bg-white">
+        <div className="flex justify-center h-[600px] items-center max-w-[830px] m-auto bg-white rounded-md">
           <div
             style={{
               display: 'flex',

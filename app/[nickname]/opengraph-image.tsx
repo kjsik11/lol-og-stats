@@ -14,6 +14,26 @@ export const runtime = 'edge';
 
 export default async function og({ params: { nickname } }: { params: { nickname: string } }) {
   const summonerIds = await getSummonerV4(nickname);
+
+  //@ts-ignore
+  if (summonerIds?.status?.message)
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            display: 'flex',
+            width: '1200px',
+            height: '600px',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: 64,
+            fontWeight: 'bold',
+          }}
+        >
+          존재하지 않는 소환사입니다.
+        </div>
+      ),
+    );
   const summonerInfo = await getSummonerInfo(summonerIds.id);
   const matchIds = await getMatchIds(summonerIds.puuid);
   const matchInfoList = await Promise.all(
