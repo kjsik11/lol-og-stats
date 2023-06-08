@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: '롤 전적검색',
     openGraph: {
       title: '롤 전적검색',
-      description: `${params?.nickname}님의 리그오브레전드 한국서버 전적검색`,
+      description: '리그오브레전드 한국서버 전적검색',
     },
   };
 }
