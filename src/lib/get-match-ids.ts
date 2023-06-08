@@ -1,8 +1,10 @@
 import { RIOT_API_KEY } from '@/consts/env';
 
-export default async function getMatchIds(puuid: string): Promise<string[]> {
+export default async function getMatchIds(puuid: string, count?: number): Promise<string[]> {
   return await fetch(
-    `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=10`,
+    `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=${
+      count || 5
+    }`,
     {
       method: 'GET',
       headers: {
