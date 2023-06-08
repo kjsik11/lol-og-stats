@@ -11,7 +11,7 @@ export type SummonerInfoDetail = {
 }[];
 
 export type SummonerInfo = SummonerInfoDetail[0];
-export default async function getSummonerInfo(summonerId: string): Promise<SummonerInfo> {
+export default async function getSummonerInfo(summonerId: string): Promise<SummonerInfo | null> {
   return await fetch(`${RIOT_HOST_URL}/lol/league/v4/entries/by-summoner/${summonerId}`, {
     method: 'GET',
     headers: {
@@ -24,6 +24,7 @@ export default async function getSummonerInfo(summonerId: string): Promise<Summo
         ({ queueType }) => queueType === 'RANKED_SOLO_5x5',
       ) as SummonerInfo;
 
+      if (summonerInfo === undefined) return null;
       return {
         queueType: summonerInfo.queueType,
         summonerName: summonerInfo.summonerName,

@@ -30,6 +30,18 @@ export default async function Page({ params: { nickname } }: Params) {
     );
 
   const summonerInfo = await getSummonerInfo(summonerIds.id);
+
+  //@ts-ignore
+  if (summonerInfo === null)
+    return (
+      <div className="bg-black h-screen flex items-center min-h-[600px]">
+        <div className="flex justify-center h-[600px] items-center w-[830px] m-auto bg-white rounded-md flex-col">
+          <p className="text-2xl font-semibold">현재 5vs5랭크게임 전적검색만 지원하고있습니다.</p>
+          <p className="text-2xl font-semibold">5vs5랭크게임 전적이 없는 소환사입니다.</p>
+        </div>
+      </div>
+    );
+
   const matchIds = await getMatchIds(summonerIds.puuid, 10);
   const matchInfoList = await Promise.all(
     matchIds.map(async (matchId) => await getMatchInfo(matchId, summonerIds.puuid)),
