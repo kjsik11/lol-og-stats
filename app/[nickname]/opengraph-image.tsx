@@ -46,7 +46,7 @@ export default async function og({ params: { nickname } }: { params: { nickname:
             height: '600px',
             justifyContent: 'center',
             alignItems: 'center',
-            fontSize: 32,
+            fontSize: 56,
             fontWeight: 'bold',
           }}
         >
