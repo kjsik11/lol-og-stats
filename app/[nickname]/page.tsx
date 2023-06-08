@@ -132,6 +132,7 @@ export default async function Page({ params: { nickname } }: Params) {
                   <p
                     style={{
                       flex: 1,
+                      textAlign: 'center',
                       justifyContent: 'center',
                       fontSize: '18px',
                       padding: 0,
@@ -192,6 +193,7 @@ export default async function Page({ params: { nickname } }: Params) {
                     style={{
                       flex: 1,
                       justifyContent: 'center',
+                      textAlign: 'center',
                       fontSize: '18px',
                       padding: 0,
                       margin: 0,
