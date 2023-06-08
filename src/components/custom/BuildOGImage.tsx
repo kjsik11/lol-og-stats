@@ -20,15 +20,15 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
     >
       <div
         style={{
-          marginTop: 24,
+          marginTop: 30,
           display: 'flex',
           alignContent: 'center',
         }}
       >
         <img
           style={{
-            width: 210,
-            height: 240,
+            width: 192,
+            height: 220,
           }}
           alt={`lol ${summonerInfo.queueType} ${summonerInfo.tier} tier icon`}
           src={`${NEXT_PUBLIC_WEB_URL}/images/${summonerInfo.tier}.jpg`}
@@ -70,6 +70,15 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
             {((summonerInfo.wins / (summonerInfo.wins + summonerInfo.losses)) * 100).toFixed(2)}%
           </p>
         </div>
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          margin: '8px 12px 20px 12px',
+          fontSize: '20px',
+        }}
+      >
+        최근 5게임
       </div>
       <div
         style={{
