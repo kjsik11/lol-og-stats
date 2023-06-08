@@ -7,20 +7,13 @@ import getMatchInfo from '@/lib/get-match-info';
 import getSummonerInfo from '@/lib/get-summoner-info';
 import getSummonerV4 from '@/lib/get-summoner-v4';
 
-type Props = {
-  params: { nickname: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  return {
+export const metadata: Metadata = {
+  title: '롤 전적검색',
+  openGraph: {
     title: '롤 전적검색',
-    openGraph: {
-      title: '롤 전적검색',
-      description: '리그오브레전드 한국서버 전적검색',
-    },
-  };
-}
+    description: '리그오브레전드 한국서버 전적검색',
+  },
+};
 
 type Params = { params: { nickname: string } };
 export default async function Page({ params: { nickname } }: Params) {
@@ -44,22 +37,10 @@ export default async function Page({ params: { nickname } }: Params) {
 
   return (
     <>
-      <div className="bg-black h-screen flex items-center min-h-[600px]">
-        <div className="flex justify-center h-[600px] items-center max-w-[830px] m-auto bg-white rounded-md">
-          <div
-            style={{
-              display: 'flex',
-              width: '1200px',
-              height: '600px',
-              flexDirection: 'column',
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                alignContent: 'center',
-              }}
-            >
+      <div className="bg-black flex items-center">
+        <div className="flex justify-center items-center m-auto bg-white rounded-md my-8">
+          <div>
+            <div className="flex items-center flex-col md:flex-row">
               <img
                 style={{
                   width: 171,
@@ -109,135 +90,57 @@ export default async function Page({ params: { nickname } }: Params) {
                 </p>
               </div>
             </div>
-            <div
-              style={{
-                display: 'flex',
-                margin: '8px',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                }}
-              >
-                {matchInfoList.slice(0, 5).map((matchInfo, idx) => (
+            <div className="grid grid-cols-2 md:grid-cols-5 min-w-[300px] justify-center">
+              {matchInfoList.map((matchInfo, idx) => (
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    margin: 8,
+                  }}
+                  key={idx}
+                >
+                  <img
+                    className="rounded w-40 h-40"
+                    alt={`${matchInfo.championName} image`}
+                    src={`${NEXT_PUBLIC_RIOT_CHAMPION_IMAGE_URL}/${matchInfo.championName}.png`}
+                  />
                   <div
                     style={{
                       display: 'flex',
-                      flexDirection: 'column',
-                      margin: 8,
+                      justifyContent: 'center',
+                      alignContent: 'center',
+                      marginTop: 4,
                     }}
-                    key={idx}
                   >
-                    <img
+                    <p
                       style={{
-                        width: 150,
-                        height: 150,
+                        fontSize: '18px',
+                        padding: '1px 2px',
+                        margin: '0 2px 0 0',
+                        backgroundColor: matchInfo.win ? '#5383E8' : '#E84057',
+                        fontWeight: 'bold',
+                        color: 'white',
                         borderRadius: 4,
                       }}
-                      alt={`${matchInfo.championName} image`}
-                      src={`${NEXT_PUBLIC_RIOT_CHAMPION_IMAGE_URL}/${matchInfo.championName}.png`}
-                    />
-                    <div
+                    >
+                      {matchInfo.win ? '승리' : '패배'}
+                    </p>
+                    <p
                       style={{
-                        display: 'flex',
+                        flex: 1,
+                        textAlign: 'center',
                         justifyContent: 'center',
-                        alignContent: 'center',
-                        marginTop: 4,
+                        fontSize: '18px',
+                        padding: 0,
+                        margin: 0,
                       }}
                     >
-                      <p
-                        style={{
-                          fontSize: '18px',
-                          padding: '1px 2px',
-                          margin: '0 2px 0 0',
-                          backgroundColor: matchInfo.win ? '#5383E8' : '#E84057',
-                          fontWeight: 'bold',
-                          color: 'white',
-                          borderRadius: 4,
-                        }}
-                      >
-                        {matchInfo.win ? '승리' : '패배'}
-                      </p>
-                      <p
-                        style={{
-                          flex: 1,
-                          textAlign: 'center',
-                          justifyContent: 'center',
-                          fontSize: '18px',
-                          padding: 0,
-                          margin: 0,
-                        }}
-                      >
-                        {matchInfo.kills} / {matchInfo.deaths} / {matchInfo.assists}
-                      </p>
-                    </div>
+                      {matchInfo.kills} / {matchInfo.deaths} / {matchInfo.assists}
+                    </p>
                   </div>
-                ))}
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                }}
-              >
-                {matchInfoList.slice(5).map((matchInfo, idx) => (
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      margin: 8,
-                    }}
-                    key={idx}
-                  >
-                    <img
-                      style={{
-                        width: 150,
-                        height: 150,
-                        borderRadius: 4,
-                      }}
-                      alt={`${matchInfo.championName} image`}
-                      src={`${NEXT_PUBLIC_RIOT_CHAMPION_IMAGE_URL}/${matchInfo.championName}.png`}
-                    />
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignContent: 'center',
-                        marginTop: 4,
-                      }}
-                    >
-                      <p
-                        style={{
-                          fontSize: '18px',
-                          padding: '1px 2px',
-                          margin: '0 2px 0 0',
-                          backgroundColor: matchInfo.win ? '#5383E8' : '#E84057',
-                          fontWeight: 'bold',
-                          color: 'white',
-                          borderRadius: 4,
-                        }}
-                      >
-                        {matchInfo.win ? '승리' : '패배'}
-                      </p>
-                      <p
-                        style={{
-                          flex: 1,
-                          justifyContent: 'center',
-                          textAlign: 'center',
-                          fontSize: '18px',
-                          padding: 0,
-                          margin: 0,
-                        }}
-                      >
-                        {matchInfo.kills} / {matchInfo.deaths} / {matchInfo.assists}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
