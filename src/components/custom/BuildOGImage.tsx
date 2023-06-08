@@ -132,6 +132,7 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
                 <p
                   style={{
                     justifyContent: 'center',
+                    alignItems: 'flex-end',
                     fontSize: 30,
                     padding: 0,
                     margin: 0,
@@ -140,24 +141,35 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
                   <span
                     style={{
                       color: matchInfo.win ? '#1651d0' : '#E84057',
-                      marginRight: 6,
                     }}
                   >
-                    {matchInfo.kills}K
+                    {matchInfo.kills}
                   </span>
                   <span
                     style={{
-                      marginRight: 6,
+                      marginRight: 8,
+                      fontSize: 20,
                     }}
                   >
-                    {matchInfo.deaths}D
+                    K
                   </span>
+                  <span>{matchInfo.deaths}</span>
                   <span
                     style={{
-                      marginRight: 6,
+                      marginRight: 8,
+                      fontSize: 20,
                     }}
                   >
-                    {matchInfo.assists}A
+                    D
+                  </span>
+                  <span>{matchInfo.assists}</span>
+                  <span
+                    style={{
+                      marginRight: 8,
+                      fontSize: 20,
+                    }}
+                  >
+                    A
                   </span>
                 </p>
               </div>
