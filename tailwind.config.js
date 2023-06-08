@@ -1,8 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./pages/**/*.{ts,tsx,js,jsx}', './components/**/*.{ts,tsx,js,jsx}'],
+  content: ['./app/**/*.tsx', './src/**/*.tsx'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        ['noto-serif']: ['var(--font-noto-serif)'],
+        pretendard: ['var(--font-pretendard)'],
+      },
+    },
   },
   plugins: [],
 };
