@@ -14,6 +14,8 @@ export const contentType = 'image/png';
 export const runtime = 'edge';
 
 export default async function og({ params: { nickname } }: { params: { nickname: string } }) {
+  await clearKakaoOGCache(nickname);
+
   const summonerIds = await getSummonerV4(nickname);
 
   //@ts-ignore
@@ -74,8 +76,6 @@ export default async function og({ params: { nickname } }: { params: { nickname:
   const matchInfoList = await Promise.all(
     matchIds.map(async (matchId) => await getMatchInfo(matchId, summonerIds.puuid)),
   );
-
-  await clearKakaoOGCache(nickname);
 
   return new ImageResponse(
     <BuildOGImage summonerInfo={summonerInfo} matchInfoList={matchInfoList} />,
