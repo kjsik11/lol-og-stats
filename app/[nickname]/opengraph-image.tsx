@@ -9,7 +9,7 @@ import getSummonerInfo from '@/lib/get-summoner-info';
 import getSummonerV4 from '@/lib/get-summoner-v4';
 
 export const size = { width: 1200, height: 600 };
-export const alt = 'League of Legends Summoner Record';
+export const alt = 'League of Legends Summoner Match History';
 export const contentType = 'image/png';
 export const runtime = 'edge';
 
