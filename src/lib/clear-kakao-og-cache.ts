@@ -8,7 +8,7 @@ export default async function clearKakaoOGCache(nickname: string) {
   const requestOptions: RequestInit = {
     method: 'POST',
     headers: headers,
-    body: `url=${NEXT_PUBLIC_PRODUCT_WEB_URL}/${encodeURIComponent(nickname)}`,
+    body: `url=${NEXT_PUBLIC_PRODUCT_WEB_URL}/${nickname}`,
     cache: 'no-cache',
   };
 
