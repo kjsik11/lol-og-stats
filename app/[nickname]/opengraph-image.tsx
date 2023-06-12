@@ -3,6 +3,7 @@ import { ImageResponse } from 'next/server';
 import BuildOGImage from '@/components/custom/BuildOGImage';
 
 import getMatchIds from '@/lib/\bget-match-ids';
+import clearKakaoOGCache from '@/lib/clear-kakao-og-cache';
 import getMatchInfo from '@/lib/get-match-info';
 import getSummonerInfo from '@/lib/get-summoner-info';
 import getSummonerV4 from '@/lib/get-summoner-v4';
@@ -73,6 +74,8 @@ export default async function og({ params: { nickname } }: { params: { nickname:
   const matchInfoList = await Promise.all(
     matchIds.map(async (matchId) => await getMatchInfo(matchId, summonerIds.puuid)),
   );
+
+  clearKakaoOGCache(nickname);
 
   return new ImageResponse(
     <BuildOGImage summonerInfo={summonerInfo} matchInfoList={matchInfoList} />,
