@@ -75,7 +75,7 @@ export default async function og({ params: { nickname } }: { params: { nickname:
     matchIds.map(async (matchId) => await getMatchInfo(matchId, summonerIds.puuid)),
   );
 
-  await clearKakaoOGCache(nickname);
+  clearKakaoOGCache(nickname);
 
   return new ImageResponse(
     <BuildOGImage summonerInfo={summonerInfo} matchInfoList={matchInfoList} />,
