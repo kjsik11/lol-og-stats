@@ -1,5 +1,5 @@
 export const KAKAO_kawlt = process.env.KAKAO_kawlt || '';
-export const KAKAO__kdt = process.env.KAKAO__kdt || '';
+export const KAKAO_kdt = process.env.KAKAO_kdt || '';
 
 export const RIOT_HOST_URL = process.env.RIOT_HOST_URL || '';
 export const RIOT_API_KEY = process.env.RIOT_API_KEY || '';

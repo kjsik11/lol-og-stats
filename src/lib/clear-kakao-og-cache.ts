@@ -1,9 +1,9 @@
-import { KAKAO_kawlt, KAKAO__kdt, NEXT_PUBLIC_PRODUCT_WEB_URL } from '@/consts/env';
+import { KAKAO_kawlt, KAKAO_kdt, NEXT_PUBLIC_PRODUCT_WEB_URL } from '@/consts/env';
 
 export default async function clearKakaoOGCache(nickname: string) {
   const headers = new Headers();
   headers.append('content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
-  headers.append('cookie', `_kdt=${KAKAO__kdt}; _kawlt=${KAKAO_kawlt};`);
+  headers.append('cookie', `_kdt=${KAKAO_kdt}; _kawlt=${KAKAO_kawlt};`);
 
   const requestOptions: RequestInit = {
     method: 'POST',
