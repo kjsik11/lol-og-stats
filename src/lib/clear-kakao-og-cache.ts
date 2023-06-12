@@ -5,7 +5,6 @@ export default async function clearKakaoOGCache(nickname: string) {
   headers.append('content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
   headers.append('cookie', `_kdt=${KAKAO_kdt}; _kawlt=${KAKAO_kawlt};`);
 
-  console.log('hello', KAKAO_kawlt);
   const requestOptions: RequestInit = {
     method: 'POST',
     headers: headers,
