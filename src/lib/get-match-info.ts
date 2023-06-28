@@ -38,7 +38,7 @@ export default async function getMatchInfo(matchId: string, userPuuid: string): 
   })
     .then(async (data) => await data.json())
     .then((json: MatchInfoDetail) => {
-      const matchJson = json.info.participants.find(
+      const matchJson = json.info?.participants.find(
         ({ puuid }) => puuid === userPuuid,
       ) as MatchInfoDetail['info']['participants'][0];
       return {
