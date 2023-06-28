@@ -54,46 +54,18 @@ export default async function Page({ params: { nickname } }: Params) {
           <div>
             <div className="flex items-center flex-col md:flex-row">
               <img
-                style={{
-                  width: 171,
-                  height: 194,
-                }}
+                className="w-[171px] h-[194px]"
                 alt={`lol ${summonerInfo.queueType} ${summonerInfo.tier} tier icon`}
                 src={`${NEXT_PUBLIC_WEB_URL}/images/${summonerInfo.tier}.jpg`}
               />
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  paddingLeft: '8px',
-                }}
-              >
-                <p
-                  style={{
-                    fontSize: '18px',
-                    padding: 0,
-                    margin: 0,
-                  }}
-                >
+              <div className="flex flex-col justify-center pl-2">
+                <p className="text-xl">
                   {summonerInfo.summonerName} ({summonerInfo.queueType})
                 </p>
-                <p
-                  style={{
-                    fontSize: '24px',
-                    padding: 0,
-                    margin: 0,
-                  }}
-                >
+                <p className="text-2xl">
                   {summonerInfo.tier} {summonerInfo.rank} | {summonerInfo.leaguePoints} LP
                 </p>
-                <p
-                  style={{
-                    fontSize: '18px',
-                    padding: 0,
-                    margin: 0,
-                  }}
-                >
+                <p className="text-xl">
                   {summonerInfo.wins}승 {summonerInfo.losses}패 | 승률{' '}
                   {((summonerInfo.wins / (summonerInfo.wins + summonerInfo.losses)) * 100).toFixed(
                     2,
@@ -104,50 +76,22 @@ export default async function Page({ params: { nickname } }: Params) {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-5 min-w-[300px] justify-center">
               {matchInfoList.map((matchInfo, idx) => (
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    margin: 8,
-                  }}
-                  key={idx}
-                >
+                <div className="flex flex-col m-2" key={idx}>
                   <img
                     className="rounded w-40 h-40"
                     alt={`${matchInfo.championName} image`}
                     src={`${NEXT_PUBLIC_RIOT_CHAMPION_IMAGE_URL}/${matchInfo.championName}.png`}
                   />
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignContent: 'center',
-                      marginTop: 4,
-                    }}
-                  >
+                  <div className="flex justify-center items-center mt-1">
                     <p
+                      className="text-xl py-[1px] px-0.5 mt-0.5 font-bold text-white rounded"
                       style={{
-                        fontSize: '18px',
-                        padding: '1px 2px',
-                        margin: '0 2px 0 0',
                         backgroundColor: matchInfo.win ? '#5383E8' : '#E84057',
-                        fontWeight: 'bold',
-                        color: 'white',
-                        borderRadius: 4,
                       }}
                     >
                       {matchInfo.win ? '승리' : '패배'}
                     </p>
-                    <p
-                      style={{
-                        flex: 1,
-                        textAlign: 'center',
-                        justifyContent: 'center',
-                        fontSize: '18px',
-                        padding: 0,
-                        margin: 0,
-                      }}
-                    >
+                    <p className="flex flex-1 justify-center text-center text-xl">
                       {matchInfo.kills} / {matchInfo.deaths} / {matchInfo.assists}
                     </p>
                   </div>
