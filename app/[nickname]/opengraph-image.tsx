@@ -9,8 +9,7 @@ import getSummonerV4 from '@/lib/get-summoner-v4';
 
 export const size = { width: 1200, height: 600 };
 export const alt = 'League of Legends Summoner Match History';
-export const contentType = 'image/png';
-export const runtime = 'edge';
+export const contentType = 'image/jpg';
 
 function InternalServerError() {
   return (
@@ -90,22 +89,33 @@ export default async function og({ params: { nickname } }: { params: { nickname:
     const summonerIds = await getSummonerV4(nickname);
 
     //@ts-ignore
-    if (summonerIds?.status?.message) return new ImageResponse(<NoSuchSummoner />);
+    if (summonerIds?.status?.message)
+      return new ImageResponse(<NoSuchSummoner />, {
+        ...size,
+      });
     summonerInfo = await getSummonerInfo(summonerIds.id);
 
-    if (summonerInfo === null) return new ImageResponse(<NoSuchRankgame />);
+    if (summonerInfo === null)
+      return new ImageResponse(<NoSuchRankgame />, {
+        ...size,
+      });
 
     const matchIds = await getMatchIds(summonerIds.puuid);
     matchInfoList = await Promise.all(
       matchIds.map(async (matchId) => await getMatchInfo(matchId, summonerIds.puuid)),
     );
   } catch (e) {
-    return new ImageResponse(<InternalServerError />);
+    return new ImageResponse(<InternalServerError />, {
+      ...size,
+    });
   }
 
   // clearKakaoOGCache(nickname);
 
   return new ImageResponse(
     <BuildOGImage summonerInfo={summonerInfo} matchInfoList={matchInfoList} />,
+    {
+      ...size,
+    },
   );
 }
