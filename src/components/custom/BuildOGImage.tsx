@@ -9,7 +9,6 @@ type Props = {
 };
 
 export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
-  console.log('matchinfo-check', matchInfoList);
   return (
     <div
       style={{
