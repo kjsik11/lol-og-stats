@@ -2,10 +2,12 @@ import { ImageResponse } from 'next/server';
 
 import BuildOGImage from '@/components/custom/BuildOGImage';
 
-import getMatchIds from '@/lib/\bget-match-ids';
-import getMatchInfo, { MatchInfo } from '@/lib/get-match-info';
-import getSummonerInfo, { SummonerInfo } from '@/lib/get-summoner-info';
-import getSummonerV4 from '@/lib/get-summoner-v4';
+import getMatchIdsOnOG from '@/lib/og/get-match-ids-on-og';
+import getMatchInfoOnOG from '@/lib/og/get-match-info-on-og';
+import getSummonerInfoOnOG from '@/lib/og/get-summoner-info-on-og';
+import getSummonerV4OnOG from '@/lib/og/get-summoner-v4-on-og';
+
+import type { MatchInfo, SummonerInfo } from '@/types/riot';
 
 export const size = { width: 1200, height: 600 };
 export const alt = 'League of Legends Summoner Match History';
@@ -86,31 +88,34 @@ export default async function og({ params: { nickname } }: { params: { nickname:
   let matchInfoList: MatchInfo[] | null = null;
 
   try {
-    const summonerIds = await getSummonerV4(nickname);
+    const summonerIds = await getSummonerV4OnOG(nickname);
 
     //@ts-ignore
     if (summonerIds?.status?.message)
       return new ImageResponse(<NoSuchSummoner />, {
         ...size,
       });
-    summonerInfo = await getSummonerInfo(summonerIds.id);
+    summonerInfo = await getSummonerInfoOnOG(summonerIds.id);
 
     if (summonerInfo === null)
       return new ImageResponse(<NoSuchRankgame />, {
         ...size,
       });
 
-    const matchIds = await getMatchIds(summonerIds.puuid);
+    const matchIds = await getMatchIdsOnOG(summonerIds.puuid);
     matchInfoList = await Promise.all(
-      matchIds.map(async (matchId) => await getMatchInfo(matchId, summonerIds.puuid)),
+      matchIds.map(async (matchId) => await getMatchInfoOnOG(matchId, summonerIds.puuid)),
     );
+
+    // clearKakaoOGCache(nickname);
   } catch (e) {
+    console.error(e);
+  }
+
+  if (summonerInfo === null || matchInfoList === null)
     return new ImageResponse(<InternalServerError />, {
       ...size,
     });
-  }
-
-  // clearKakaoOGCache(nickname);
 
   return new ImageResponse(
     <BuildOGImage summonerInfo={summonerInfo} matchInfoList={matchInfoList} />,
