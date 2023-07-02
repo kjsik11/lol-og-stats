@@ -42,11 +42,11 @@ export default async function getMatchInfo(matchId: string, userPuuid: string): 
         ({ puuid }) => puuid === userPuuid,
       ) as MatchInfoDetail['info']['participants'][0];
       return {
-        championName: matchJson?.championName,
-        kills: matchJson?.kills,
-        deaths: matchJson?.deaths,
-        assists: matchJson?.assists,
-        win: matchJson?.win,
+        championName: matchJson.championName,
+        kills: matchJson.kills,
+        deaths: matchJson.deaths,
+        assists: matchJson.assists,
+        win: matchJson.win,
       };
     })) as MatchInfo;
 }
