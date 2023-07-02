@@ -12,9 +12,7 @@ export default async function getSummonerInfo(summonerId: string): Promise<Summo
   })
     .json<SummonerInfo[]>()
     .then((json) => {
-      const summonerInfo = json.find(
-        ({ queueType }) => queueType === 'RANKED_SOLO_5x5',
-      ) as SummonerInfo;
+      const summonerInfo = json.find(({ queueType }) => queueType === 'RANKED_SOLO_5x5');
 
       if (summonerInfo === undefined) return null;
       return {

@@ -5,9 +5,10 @@ import fetcher from './fetcher';
 import type { SummonerIdsInfo } from '@/types/riot';
 
 export default async function getSummonerV4(nickname: string): Promise<SummonerIdsInfo> {
-  return await fetcher(`${RIOT_HOST_URL}/lol/sumoner/v4/summoners/by-name/${nickname}`, {
+  return await fetcher(`${RIOT_HOST_URL}/lol/summoner/v4/summoners/by-name/${nickname}`, {
     headers: {
       ['X-Riot-Token']: RIOT_API_KEY,
     },
+    cache: 'no-cache',
   }).json();
 }
