@@ -1,16 +1,18 @@
 import { RIOT_API_KEY } from '@/consts/env';
 import { MatchInfo, MatchInfoDetail } from '@/types/riot';
 
-import fetcher from './fetcher';
-
-export default async function getMatchInfo(matchId: string, userPuuid: string): Promise<MatchInfo> {
-  return (await fetcher(`https://asia.api.riotgames.com/lol/match/v5/matches/${matchId}`, {
+export default async function getMatchInfoOnOG(
+  matchId: string,
+  userPuuid: string,
+): Promise<MatchInfo> {
+  return (await fetch(`https://asia.api.riotgames.com/lol/match/v5/matches/${matchId}`, {
+    method: 'GET',
     headers: {
       ['X-Riot-Token']: RIOT_API_KEY,
     },
   })
-    .json<MatchInfoDetail>()
-    .then((json) => {
+    .then(async (data) => await data.json())
+    .then((json: MatchInfoDetail) => {
       const matchJson = json.info?.participants.find(
         ({ puuid }) => puuid === userPuuid,
       ) as MatchInfoDetail['info']['participants'][0];
