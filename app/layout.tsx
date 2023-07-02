@@ -1,8 +1,9 @@
 import clsx from 'clsx';
-import { Metadata } from 'next';
 import { Noto_Serif_KR } from 'next/font/google';
 import localFont from 'next/font/local';
 import { ReactNode } from 'react';
+
+import type { Metadata } from 'next';
 
 import '@/styles/globals.css';
 /**

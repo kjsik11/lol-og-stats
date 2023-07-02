@@ -1,7 +1,6 @@
 import { NEXT_PUBLIC_RIOT_CHAMPION_IMAGE_URL, NEXT_PUBLIC_WEB_URL } from '@/consts/env';
 
-import { MatchInfo } from '@/lib/get-match-info';
-import { SummonerInfo } from '@/lib/get-summoner-info';
+import type { MatchInfo, SummonerInfo } from '@/types/riot';
 
 type Props = {
   summonerInfo: SummonerInfo;
