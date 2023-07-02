@@ -1,7 +1,7 @@
 import { RIOT_API_KEY, RIOT_HOST_URL } from '@/consts/env';
-import { SummonerInfoDetail } from '@/types/riot';
 
-export type SummonerInfo = SummonerInfoDetail[0];
+import type { SummonerInfo } from '@/types/riot';
+
 export default async function getSummonerInfoOnOG(
   summonerId: string,
 ): Promise<SummonerInfo | null> {
@@ -12,7 +12,7 @@ export default async function getSummonerInfoOnOG(
     },
   })
     .then(async (data) => await data.json())
-    .then((json: SummonerInfoDetail) => {
+    .then((json: SummonerInfo[]) => {
       const summonerInfo = json.find(
         ({ queueType }) => queueType === 'RANKED_SOLO_5x5',
       ) as SummonerInfo;

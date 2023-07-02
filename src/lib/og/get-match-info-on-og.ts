@@ -1,5 +1,6 @@
 import { RIOT_API_KEY } from '@/consts/env';
-import { MatchInfo, MatchInfoDetail } from '@/types/riot';
+
+import type { MatchInfo, MatchInfoDetail } from '@/types/riot';
 
 export default async function getMatchInfoOnOG(
   matchId: string,
