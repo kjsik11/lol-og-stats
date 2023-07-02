@@ -43,10 +43,10 @@ export default async function getMatchInfo(matchId: string, userPuuid: string): 
       ) as MatchInfoDetail['info']['participants'][0];
       return {
         championName: matchJson?.championName,
-        kills: matchJson.kills,
-        deaths: matchJson.deaths,
-        assists: matchJson.assists,
-        win: matchJson.win,
+        kills: matchJson?.kills,
+        deaths: matchJson?.deaths,
+        assists: matchJson?.assists,
+        win: matchJson?.win,
       };
     })) as MatchInfo;
 }

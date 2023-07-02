@@ -110,8 +110,8 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
                   borderTopLeftRadius: 4,
                   borderTopRightRadius: 4,
                 }}
-                alt={`${matchInfo.championName} image`}
-                src={`${NEXT_PUBLIC_RIOT_CHAMPION_IMAGE_URL}/${matchInfo.championName}.png`}
+                alt={`${matchInfo?.championName} image`}
+                src={`${NEXT_PUBLIC_RIOT_CHAMPION_IMAGE_URL}/${matchInfo?.championName}.png`}
               />
 
               <div
@@ -149,10 +149,10 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
                 >
                   <span
                     style={{
-                      color: matchInfo.win ? '#1651d0' : '#E84057',
+                      color: matchInfo?.win ? '#1651d0' : '#E84057',
                     }}
                   >
-                    {matchInfo.kills}
+                    {matchInfo?.kills}
                   </span>
                   <span
                     style={{
@@ -163,7 +163,7 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
                   >
                     K
                   </span>
-                  <span>{matchInfo.deaths}</span>
+                  <span>{matchInfo?.deaths}</span>
                   <span
                     style={{
                       marginRight: 8,
@@ -173,7 +173,7 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
                   >
                     D
                   </span>
-                  <span>{matchInfo.assists}</span>
+                  <span>{matchInfo?.assists}</span>
                   <span
                     style={{
                       marginRight: 8,
