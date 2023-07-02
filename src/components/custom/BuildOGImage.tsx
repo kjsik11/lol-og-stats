@@ -20,7 +20,6 @@ export default function BuildOGImage({ summonerInfo, matchInfoList }: Props) {
     >
       <div
         style={{
-          marginTop: 30,
           display: 'flex',
           alignContent: 'center',
         }}
